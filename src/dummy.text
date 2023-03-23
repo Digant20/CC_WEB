@@ -1,0 +1,19 @@
+//text-shadow
+
+<!DOCTYPE html>
+<html>
+<head>
+<style> 
+#example2 {
+  border: 1px solid;
+  padding: 10px;
+  text-shadow: 1px 2px violet;
+  font-size: 40px;
+}
+
+</style>
+</head>
+<body>
+  <p id="example2">You can also define the color of the shadow. Here the shadow color is grey.</p>
+</body>
+</html>
