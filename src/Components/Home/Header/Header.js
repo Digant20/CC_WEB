@@ -16,6 +16,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
 import { ListItemButton } from '@mui/material';
 
+import { menu_items } from './menu_items';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -55,10 +56,13 @@ const Header = () => {
           
           <div className='ul-div'>
                 <ul>
-                    <li>HOME</li>
-                    <li>SHOP</li>
-                    <li>ABOUT</li>
-                    <li>CONTACT</li>
+                    {menu_items.map((res, index)=>{
+
+                      return(
+                        <li key={index}>{res}</li>
+                      )
+
+                    })}
                 </ul>
       
           </div>
@@ -90,44 +94,34 @@ const Header = () => {
                    </div>
                    
               <List style={{marginLeft: '20px'}}>
-                <ListItemButton  autoFocus='true' sx={{
-                                                  '&.Mui-selected': {
-                                                    color: 'orange'
-                                                  }
-                                                }}>
-                  <ListItemText primary="HOME"/>
-                </ListItemButton>
+              {
+
+                menu_items.map((res, index)=>{
+
+                  return(
+                          <ListItemButton 
+                              key={index}  
+                              autoFocus='true' 
+                              sx={{
+                                    '&.Mui-selected': {
+                                      color: 'orange'
+                                    }
+                                  }}
+                              >
+                              <ListItemText primary={res} />
+                          </ListItemButton>
+                      )
+
+                  })
+
+              }
                
-                <ListItemButton sx={{
-                                      '&.Mui-selected': {
-                                       color: 'orange'
-                                      }
-                                    }}>
-                  <ListItemText primary="SHOP"/>
-                </ListItemButton>
-
-                <ListItemButton sx={{
-                                      '&.Mui-selected': {
-                                        color: 'orange'
-                                      }
-                                    }}>
-                  <ListItemText primary="ABOUT" />
-                </ListItemButton>
-
-                <ListItemButton sx={{
-                                      '&.Mui-selected': {
-                                        color: 'orange'
-                                      }
-                                    }}>
-                  <ListItemText primary="CONTACT" />
-                </ListItemButton>
+               
               </List>
             </Dialog>
 
 
         </div>
-
-
 
 
 
@@ -163,8 +157,10 @@ const Header = () => {
                   flex-direction: row;
                   justify-content: space-around;
                   height: 18vh;
-                  align-items: center;
-                 
+                  align-items: center;        
+                  position: fixed;
+                  z-index:600;
+                  width: 100%;
                   background-color: #FEC74F;
                    
                 }
@@ -213,6 +209,7 @@ const Header = () => {
                   .navigation{
                   
                   height: 8vh;
+                  positon: fixed;
                 
                 }
                   

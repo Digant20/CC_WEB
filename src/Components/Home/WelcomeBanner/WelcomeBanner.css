@@ -1,0 +1,11 @@
+
+.main-div{
+    height: 100%;
+    width: 100%;
+    /* background-color: #FEC74F; */
+    text-align: center;
+    background-image: url('../../../Assets/images/main_dog.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
