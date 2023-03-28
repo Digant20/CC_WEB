@@ -16,25 +16,25 @@ const FoodExplainer = () => {
 
             <div>
                 <h1>100% NATURAL & WHOLESOME</h1>
-                <p>While some think insects can be icky, they are not only are a 
+                <span className='paragraphs'>While some think insects can be icky, they are not only are a 
                     natural and nutritious part of most pet diets but are
-                    the most sustainable protein source on the planet.</p>
+                    the most sustainable protein source on the planet.</span>
             </div>
             
             <div>
                 <h1>100% AIR-DRIED GOODNESS</h1>
-                <p>Superior palatability, high nutritional density and 
+                <p className='paragraphs'>Superior palatability, high nutritional density and 
                     enhanced protein quality. Good enough reasons to 
                   choose air-dried a.k.a “healthy Kibble”? We think so!</p>
             </div>
 
             <div>
                 <h1>100% SUSTAINABLE</h1>
-                <p>Did you know that food waste is responsible for 10% of global greenhouse gas emissions?  Our all-natural insect-based treats are made from Black Soldier Fly Larvae (BSFL), which are nature’s tool against food waste.</p>
+                <p className='paragraphs'>Did you know that food waste is responsible for 10% of global greenhouse gas emissions?  Our all-natural insect-based treats are made from Black Soldier Fly Larvae (BSFL), which are nature’s tool against food waste.</p>
             </div>
 
             <div className='button-div-learn'>
-                <button className="learn-more-btn">SHOP NOW</button>
+                <button className="learn-more-btn">Click here to learn more!</button>
             </div>
             
         </div>
@@ -50,7 +50,6 @@ const FoodExplainer = () => {
               display: flex;
               margin-top:0px;
               justify-content: center;
-              margin-top: 25%;
             }
 
         .learn-more-btn{
@@ -60,8 +59,11 @@ const FoodExplainer = () => {
                 border-radius: 1px;
                 background-color: red;
                 color: white;
+                font-size: 15px;
                 justify-content: center;
-               
+                opacity: 0.8;
+                margin-top: 5%;
+                font-family: 'Roboto', sans-serif;
         }
 
             .main-div-food{
@@ -115,7 +117,16 @@ const FoodExplainer = () => {
                 letter-spacing: 2px;
                 font-family: 'Oswald', sans-serif;
             }
-        
+
+
+          
+
+            .paragraphs{
+                color: rgb(65,65,65);
+                font-size: 18px;
+                line-height: 30px;
+                letter-spacing: 1px;
+                overflow-wrap: break-word;                }        
         `}</style>
     </div>
   )

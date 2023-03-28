@@ -39,7 +39,7 @@ const WelcomeBanner = () => {
                 border-radius: 1px;
                 background-color: red;
                 color: white;
-               
+                opacity: 0.7;
         }
 
             .main-div{
@@ -63,8 +63,8 @@ const WelcomeBanner = () => {
                 text-align: left;
                 margin: 30% 0 20% 10%;
                 text-shadow: rgba(0, 0, 0, 0.4) 0px 4px 5px;
-                font-size: 70px;
-                font-weight: 300;
+                font-size: 75px;
+                font-weight: 500;
                 font-family: 'Oswald', sans-serif;
                 
                 
