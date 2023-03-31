@@ -12,26 +12,29 @@ const FoodExplainer = () => {
 
         </div>
 
-        <div className='content-div'>
+        <div  className='content-div'>
 
-            <div>
-                <h1>100% NATURAL & WHOLESOME</h1>
-                <span className='paragraphs'>While some think insects can be icky, they are not only are a 
+                <div  className='header-div'>
+                    100% NATURAL & WHOLESOME
+                    <p className='paragraphs'>While some think insects can be icky, they are not only are a 
                     natural and nutritious part of most pet diets but are
-                    the most sustainable protein source on the planet.</span>
-            </div>
-            
-            <div>
-                <h1>100% AIR-DRIED GOODNESS</h1>
-                <p className='paragraphs'>Superior palatability, high nutritional density and 
+                    the most sustainable protein source on the planet.</p>
+                </div>
+                
+          
+                <div  className='header-div'>
+                    100% AIR-DRIED GOODNESS
+                    <p className='paragraphs'>Superior palatability, high nutritional density and 
                     enhanced protein quality. Good enough reasons to 
                   choose air-dried a.k.a “healthy Kibble”? We think so!</p>
-            </div>
-
-            <div>
-                <h1>100% SUSTAINABLE</h1>
-                <p className='paragraphs'>Did you know that food waste is responsible for 10% of global greenhouse gas emissions?  Our all-natural insect-based treats are made from Black Soldier Fly Larvae (BSFL), which are nature’s tool against food waste.</p>
-            </div>
+                </div>
+                
+            
+                <div  className='header-div'>
+                    100% SUSTAINABLE
+                    <p className='paragraphs'>Did you know that food waste is responsible for 10% of global greenhouse gas emissions?  Our all-natural insect-based treats are made from Black Soldier Fly Larvae (BSFL), which are nature’s tool against food waste.</p>
+                </div>
+                           
 
             <div className='button-div-learn'>
                 <button className="learn-more-btn">Click here to learn more!</button>
@@ -62,7 +65,7 @@ const FoodExplainer = () => {
                 font-size: 15px;
                 justify-content: center;
                 opacity: 0.8;
-                margin-top: 5%;
+                cursor: pointer;
                 font-family: 'Roboto', sans-serif;
         }
 
@@ -102,32 +105,28 @@ const FoodExplainer = () => {
                 object-position: 50% 50%;
             }
 
-            .content-div{
-                height: 625px;
-                width: 80%;
-                background-color: #B3E0AF;
-
-                color: #3A3953;
-
-
-                text-align: center;
-            
-                font-size: 20px;
-                line-height: 30px;
-                letter-spacing: 2px;
+            .header-div{
+                font-size: 40px;    
                 font-family: 'Oswald', sans-serif;
             }
 
-
-          
+            .content-div{
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                height: 625px;
+                width: 80%;
+                background-color: #B3E0AF;
+                color: #3A3953;               
+                text-align: center;
+                
+            }
 
             .paragraphs{
-                color: rgb(65,65,65);
+                margin: 5%;
                 font-size: 18px;
-                line-height: 30px;
-                letter-spacing: 1px;
-                overflow-wrap: break-word;                }        
-        `}</style>
+                margin-top: 0;
+                font-family: 'Open Sans', sans-serif;        `}</style>
     </div>
   )
 }

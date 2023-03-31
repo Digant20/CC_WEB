@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-axios.defaults.baseURL = 'http://ecom.apprikart.com/cc/api'; //live production url
+//axios.defaults.baseURL = 'http://ecom.apprikart.com/cc/api'; //live production url
 
 
 root.render(

@@ -8,6 +8,7 @@ import FoodExplainer from './FoodExplainer/FoodExplainer'
 import ProductsListing from './ProductListing/ProductsListing'
 import axios from 'axios';
 import AboutUs from './About/AboutUs'
+import SocialMedia from './SocialMedia/SocialMedia'
 
 const Home = () => {
 
@@ -26,6 +27,7 @@ const Home = () => {
 
         <ProductsListing />
         <AboutUs />
+        <SocialMedia />
 
 
         

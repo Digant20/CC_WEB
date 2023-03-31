@@ -27,13 +27,12 @@ const ProductsListing = () => {
 
     const [products, setProducts] = useState();
 
-    const productApi = "/pagination/products?limit=20&page=0";
+    const productApi = "http://ecom.apprikart.com/cc/api/pagination/products?limit=2&page=0";
 
     //jwt token
     const jwtToken ='Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIrOTEgODE5Nzc0Njc3NCIsImF1dGgiOiJST0xFX1VTRVIiLCJ0ZW5hbnQiOiI4OTg5ODEiLCJleHAiOjE3MDY0MzcxNzZ9.RKy10Jq0JZ-0mCnEhrErm2wBDSfYPdXjdVMEPWKAt18-WFm55glBTGuNilpWPxFJCalmXiYhgc1CcetHnFILJw';
 
    
-
     const headerObject =   useMemo( ()=>{
                                 return( {
                                     'Authorization': jwtToken,
@@ -162,7 +161,7 @@ const ProductsListing = () => {
                 color: #3A3953;
                 font-size: 15px;
                 justify-content: center;
-                 
+                cursor: pointer;
                 font-family: 'Roboto', sans-serif;
             }
 
@@ -173,6 +172,7 @@ const ProductsListing = () => {
             }
 
             .load-more-btn{
+                cursor: pointer;
                 height: 40px;
                 width: 150px;
                 border: 1px solid #3A3953;
@@ -192,6 +192,7 @@ const ProductsListing = () => {
             }
 
             .add-to-cart-btn{
+                cursor: pointer;
                 height: 40px;
                 width: 500px;
                 border: 1px solid #3A3953;
@@ -244,21 +245,21 @@ const ProductsListing = () => {
                 flex-direction: row;
             }
 
-                    .main-products-div{
-                        display: flex;
-                        flex-direction: column;
-                        
-                    }
-                    
-                    .our-range-div{
-                        justify-content: center;
-                        text-align: center;
-                        height: 200px;
-                        color: #3A3953;
-                        font-size: 45px;
-                        font-weight: 400;
-                        font-family: 'Oswald', sans-serif;
-                    }
+            .main-products-div{
+                display: flex;
+                flex-direction: column;
+                
+            }
+            
+            .our-range-div{
+                justify-content: center;
+                text-align: center;
+                height: 200px;
+                color: #3A3953;
+                font-size: 45px;
+                font-weight: 400;
+                font-family: 'Oswald', sans-serif;
+            }
 
             `}</style>
     </div>

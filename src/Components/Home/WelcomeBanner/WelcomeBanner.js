@@ -33,6 +33,7 @@ const WelcomeBanner = () => {
             }
 
         .shop-now-btn{
+            cursor: pointer;
                 height: 40px;
                 width: 150px;
                 border: 1px solid red;
