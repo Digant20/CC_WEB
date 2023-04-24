@@ -53,6 +53,7 @@ const FoodExplainer = () => {
               display: flex;
               margin-top:0px;
               justify-content: center;
+              align-items: center
             }
 
         .learn-more-btn{
@@ -64,6 +65,7 @@ const FoodExplainer = () => {
                 color: white;
                 font-size: 15px;
                 justify-content: center;
+                
                 opacity: 0.8;
                 cursor: pointer;
                 font-family: 'Roboto', sans-serif;

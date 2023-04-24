@@ -132,6 +132,7 @@ const Header = () => {
               .ul-div{
                 right: 0px;
                 margin: 0px;
+                color: #3A3953;
               }
 
               .hexagon {
@@ -156,9 +157,11 @@ const Header = () => {
                   display:flex;
                   flex-direction: row;
                   justify-content: space-around;
-                  height: 18vh;
+                  height: 112px;
+                  
                   align-items: center;        
                   position: fixed;
+                  top: 0px;
                   z-index:600;
                   width: 100%;
                   background-color: #FEC74F;
@@ -226,7 +229,7 @@ const Header = () => {
                         display: ${openHamburgerMenu ? 'flex' : 'none'};
                         background-color: #FEC74F;
                         flex-direction: column;
-                        color: #57557D;
+                        color: #3A3953;
                         height: 100vh;
 
                         width: 50vw;

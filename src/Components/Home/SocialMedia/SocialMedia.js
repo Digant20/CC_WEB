@@ -91,6 +91,7 @@ const SocialMedia = () => {
 
 
     const getNextInstaPost = ()=>{
+        
 
             axios.get(instaPosts?.nextPost)
             .then((res)=>{
@@ -145,8 +146,8 @@ const SocialMedia = () => {
 
     </Grid>
 
-    <div className='load-more-div'>
-        <button className="load-more-btn" onClick={()=>{getNextInstaPost()}}>Load More</button>
+    <div className='load-more-social-btn-div'>
+        <button className="load-more-social-btn" onClick={()=>{getNextInstaPost()}}>Load More</button>
     </div>
 
         <style jsx>{`
@@ -157,14 +158,14 @@ const SocialMedia = () => {
             justify-content: center;
         }
 
-        .load-more-div{ 
-              margin: 3%;            
+        .load-more-social-btn-div{ 
+              margin: 1% 3% 4% 3%;            
               height: 40px;
               cursor: ${instaPosts.nextPost === undefined || instaPosts.nextPost === "" || instaPosts.nextPost.length  === 0 ? 'not-allowed': ''};
             }
 
     
-        .load-more-btn{
+        .load-more-social-btn{
                     pointer-events: ${instaPosts.nextPost === undefined || instaPosts.nextPost === "" || instaPosts.nextPost.length  === 0 ? 'none': 'auto'};
                     height: 40px;
                     width: 120px;
@@ -181,11 +182,11 @@ const SocialMedia = () => {
 
             .social-media-title{               
                 text-align: center;
-                margin: 10px;
+                margin-top: 10px;
                 color: #3A3953;
-                font-size: 50px;
-                font-weight: bold;
-                letter-spacing: 2px;
+                font-size: 45px;
+                font-weight: 500;
+                letter-spacing: 0px;
                 font-family: 'Oswald', sans-serif;
             }
 

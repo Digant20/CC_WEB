@@ -1,0 +1,1 @@
+export const SURVEY_MENUS = ['SURVEY', 'FAQ', 'Shipping & Returns', 'Privacy Policy', 'Payment Methods']

@@ -25,9 +25,11 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const ProductsListing = () => {
 
-    const [products, setProducts] = useState();
+    const [products, setProducts] = useState({productsArray: [], totalPages: null});
 
-    const productApi = "http://ecom.apprikart.com/cc/api/pagination/products?limit=2&page=0";
+    const [pageNum, setPageNum] = useState(0);
+
+    const productApi = "/pagination/products?limit=2&page="+pageNum;
 
     //jwt token
     const jwtToken ='Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIrOTEgODE5Nzc0Njc3NCIsImF1dGgiOiJST0xFX1VTRVIiLCJ0ZW5hbnQiOiI4OTg5ODEiLCJleHAiOjE3MDY0MzcxNzZ9.RKy10Jq0JZ-0mCnEhrErm2wBDSfYPdXjdVMEPWKAt18-WFm55glBTGuNilpWPxFJCalmXiYhgc1CcetHnFILJw';
@@ -38,7 +40,8 @@ const ProductsListing = () => {
                                     'Authorization': jwtToken,
                                     'Accept' : '*/*',
                                     'Content-Type': 'application/json',
-                                    'App-Token' : 'A14BC'
+                                    'App-Token' : 'A14BC',
+                                    'Access-Control-Allow-Origin': '*'
                                     }
                                  )
                             },[])
@@ -49,24 +52,49 @@ const ProductsListing = () => {
       axios.get(productApi, {headers: headerObject})
             .then( (res)=>{
 
-              setProducts(res.data.data);
+              //setProducts(res.data.data);
+               
+              let newArr = [...products.productsArray, res?.data?.data.product]
+              let flatArray = newArr.flat(Infinity);
 
-              console.log("products: ", res.data.data.product);
+              setProducts({productsArray: flatArray, totalPages: res?.data?.data.totalPages})
+                            
+            }).catch((error)=>{console.log(error)})
 
-            }).catch((error)=>{console.log(error.message)})
+    }, [])
 
-    }, [headerObject])
+
+
+    const getNextPageProducts = ()=>{
+
+        setPageNum(pageNum + 1);
+
+        axios.get(productApi, {headers: headerObject})
+            .then( (res)=>{
+               
+                let newArr = [...products.productsArray, res?.data?.data.product]
+                let flatArray = newArr.flat(Infinity);
+
+              setProducts({productsArray: flatArray, totalPages: res?.data?.data.totalPages})
+              
+                // setProducts(flatArray)
+
+            }).catch((error)=>{console.log(error)})
+
+    }
 
 
     const urlValidation = async (url) => {
         const isValidImage = await validateImage(url);
-        console.log(isValidImage);
        return isValidImage;
       };
 
 
       let [over,setOver]=React.useState(false);
       let [productIndex, setProductIndex] =useState()
+
+
+
 
   return (
     <div className='product-main-div'>
@@ -80,7 +108,7 @@ const ProductsListing = () => {
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
               
                 {
-                    products?.product.map((res, index)=>{
+                   products?.productsArray.map((res, index)=>{
 
                         return(
                             <Grid item xs={6}>
@@ -118,7 +146,7 @@ const ProductsListing = () => {
             </Grid>
 
             <div className='load-more-div'>
-                <button className="load-more-btn" onClick={ ()=>{window.alert("btn clicked")}}>Load More</button>
+                <button className="load-more-btn" onClick={ ()=>{getNextPageProducts()}}>Load More</button>
             </div>
 
             <div className='shop-all-div'>
@@ -126,7 +154,7 @@ const ProductsListing = () => {
             </div>
 
 
-            <div className='load-more-div'>
+            <div className='hr-div'>
                 <hr className='hrline'/>
             </div>
            
@@ -138,10 +166,17 @@ const ProductsListing = () => {
 
             <style jsx>{`
 
+            .hr-div{
+                display: flex;
+                justify-content: center;
+                margin-top: 8px;
+            }
+
             .hrline{
                 width: 3.5%;
                 opacity: 0.7;
                 border-color: #3A3953;
+                height: 0.2px;
                 margin-top: 2%;
                 text-align: center;
             }
@@ -166,13 +201,12 @@ const ProductsListing = () => {
             }
 
             .load-more-div{
-                display: flex;
-                justify-content: center;
-                margin-top: 8px;
+                cursor: ${pageNum === (products?.totalPages - 1) ? 'not-allowed': 'pointer'};
             }
 
             .load-more-btn{
                 cursor: pointer;
+
                 height: 40px;
                 width: 150px;
                 border: 1px solid #3A3953;
@@ -181,7 +215,8 @@ const ProductsListing = () => {
                 color: white;
                 font-size: 15px;
                 justify-content: center;
-                 
+                pointer-events: ${pageNum === (products?.totalPages - 1) ? 'none': 'auto'};
+                opacity: ${pageNum === (products?.totalPages - 1) ? 0.5 : 1};
                 font-family: 'Roboto', sans-serif;
             }
 
@@ -225,11 +260,8 @@ const ProductsListing = () => {
             }
 
             .product-image{
-
                 width: 500px;
                 height: 500px;
-                
-
             }
 
             .product-columns{
@@ -239,7 +271,6 @@ const ProductsListing = () => {
             }
 
             
-
             .products-div{
                 display: flex;
                 flex-direction: row;

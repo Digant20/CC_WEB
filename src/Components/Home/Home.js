@@ -9,6 +9,8 @@ import ProductsListing from './ProductListing/ProductsListing'
 import axios from 'axios';
 import AboutUs from './About/AboutUs'
 import SocialMedia from './SocialMedia/SocialMedia'
+import HappyCustomers from './HappyCustomers/HappyCustomers'
+import Footer from './Footer/Footer'
 
 const Home = () => {
 
@@ -28,6 +30,9 @@ const Home = () => {
         <ProductsListing />
         <AboutUs />
         <SocialMedia />
+        <HappyCustomers />
+
+        <Footer />
 
 
         
