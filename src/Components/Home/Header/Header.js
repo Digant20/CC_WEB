@@ -140,7 +140,7 @@ const Header = () => {
                   height: 200px;
                   background-color: #FEC74F; /* Change this to your desired background color */
                   position: relative;
-                  margin-top: 80px; /* This is half of the hexagon's height */
+                  margin: 80px 0px 0px 79px; /* This is half of the hexagon's height */
                   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
                 }
 

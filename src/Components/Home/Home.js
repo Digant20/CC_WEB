@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Header from './Header/Header'
 import OurRange from './SectionTitleHeaders/OurRange'
 import RangeCards from './RangeCards/RangeCards'
@@ -6,7 +6,6 @@ import WelcomeBanner from './WelcomeBanner/WelcomeBanner'
 import DeliciouslyClimate from './SectionTitleHeaders/DeliciouslyClimate'
 import FoodExplainer from './FoodExplainer/FoodExplainer'
 import ProductsListing from './ProductListing/ProductsListing'
-import axios from 'axios';
 import AboutUs from './About/AboutUs'
 import SocialMedia from './SocialMedia/SocialMedia'
 import HappyCustomers from './HappyCustomers/HappyCustomers'
