@@ -5,9 +5,11 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { Button } from '@mui/material';
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Footer = () => {
 
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const joinCommunity = (e) =>{
@@ -28,10 +30,12 @@ const Footer = () => {
               <div className='footer-home-menus-div'>
                   <ul>
                     {
-                      menu_items.map((res)=>{
+                      menu_items.map((res, index)=>{
+                        
                         return(
-                          <li>{res}</li>
-                        )
+                          <li key={index}  > <NavLink activeClassName="active" style={{textDecoration: 'none'}}  to={"/"+res.toLowerCase()}>{res}</NavLink></li>
+
+                          )
                       })
                     } 
                   </ul>
@@ -55,7 +59,7 @@ const Footer = () => {
                             <li className='customer-li'>CUSTOMER SERVICE</li>
                             <li>123-456-789</li>
                             <li>1-800-000-0000</li>
-                            <li>support@consciouscreatures.earth</li>
+                            <li><a href="mailto:support@consciouscreatures.earth" style={{textDecoration: 'none', color: '#3A3953'}}>support@consciouscreatures.earth</a></li>
                         </ul>
                
               </div>
@@ -94,32 +98,42 @@ const Footer = () => {
 
     <style jsx>{`
 
-    
+              .active{
+                  color: #008AFC;   
+              }
+             
 
-    input::placeholder {
-        font-size: 1.1em;
-      }
+            input::placeholder {
+                font-size: 1.1em;
+              }
 
-    .footer-copyright{
-          font-size: 12px;
-          color: #57557D;
-         margin-bottom: 50px;
-    }
 
-        .join-text{
-          font-size: 30px;
-          font-weight: 500;
-          color: #57557D;
-          margin-top: 10px;
-          font-family: 'Oswald', sans-serif;
-        }
+            .footer-copyright{
+                  font-size: 12px;
+                  color: #57557D;
+                  margin-bottom: 50px;
+            }
 
-        .footer-join-community-div{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;   
-        }
+            ul li a{
+              color: #3A3953;
+            }
+
+            .join-text{
+              font-size: 30px;
+              font-weight: 500;
+              color: #57557D;
+              margin-top: 10px;
+              font-family: 'Oswald', sans-serif;
+            }
+
+
+            .footer-join-community-div{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;   
+            }
+
 
           .footer-form{
               width: 585px;
@@ -130,12 +144,13 @@ const Footer = () => {
               margin: 40px 40px 20px 40px;
           }
 
+
           .email-input{
               width: 550px;
               height: 35px;
               text-indent: 25px;
-
           }
+
 
           .join-form-btn-div{
               display: flex;
@@ -165,7 +180,6 @@ const Footer = () => {
             display: flex;
             gap: 10px;
             color: #3A3953;
-           
           }
 
 
@@ -174,9 +188,9 @@ const Footer = () => {
             fontWeight: bold;
           }
 
+
           .footer-home-menus-div, .footer-policy-div{
               display: flex;
-
           }
 
 
@@ -186,29 +200,23 @@ const Footer = () => {
               color: #3A3953;
               font-weight: bold;
               line-height: 35px; 
+              cursor: pointer;
           }
+
+         
 
           .footer-policy-div ul li{
               list-style: none;
               text-align: left;
               color: #3A3953;
-              
               line-height: 35px;
           }
 
+
           .customer-li{
             font-weight: bold;
+            
           }
-
-          .footer-home-menus-div ul li:active{
-              color: white;
-          }
-
-
-          .footer-home-menus-div ul li:selected
-            {
-                color: white;
-            }
 
             .footer-content-inner{
               display: flex;
@@ -222,21 +230,19 @@ const Footer = () => {
               flex-direction: column;
               gap: 5;
               height: 900px;
+              color: #FFFAF5;
               background-color: #FEC74F;
-            
           }
+
 
           .footer-hr-line{
             border: none;
-           
             height: 1px;
-        
             color: #3A3953; 
             background-color: #3A3953;
-
             margin: 105px 70px 20px 70px;
-            
           }
+
     `}</style>
 
    </div>

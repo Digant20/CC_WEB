@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
@@ -23,6 +23,9 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const About = () => {
 
+    useEffect(() => {
+        document.title = 'about | consciouscreatures';
+      }, []);
     
   return (
     <div className='main-div-shop'>

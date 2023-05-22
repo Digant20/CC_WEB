@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import Hamburger from './Hamburger';
 import logo from '../../../Assets/images/Conscious_creatures_logo.png'
 // import '../Header/Hamburger.css';
@@ -16,7 +16,12 @@ import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
 import { ListItemButton } from '@mui/material';
 
+import { NavLink, useNavigate } from "react-router-dom";
+
 import { menu_items } from './menu_items';
+import MiniCart from '../../MiniCart/MiniCart';
+import { theDefaultJwt } from '../../utils/theJwt';
+import axios from 'axios';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -35,6 +40,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const Header = () => {
 
+  const navigate = useNavigate();
+
+
   const [openHamburgerMenu, setOpenHamburgerMenu] = useState(false);
 
   const handleClickOpen = () => {
@@ -44,6 +52,42 @@ const Header = () => {
   const handleClose = () => {
     setOpenHamburgerMenu(false);
   };
+
+  const [cartLength, setCartLength] = useState(0);
+
+  const jwtToken ='Bearer '+theDefaultJwt;
+  const cartItemApi = "http://ecom.apprikart.com/cc/api/cart/customer/6/2?limit=10&page=0";
+
+  const headerObject =   useMemo( ()=>{
+
+    return( {
+        'Authorization': jwtToken,
+        'Accept' : '*/*',
+        'Content-Type': 'application/json',
+        'App-Token' : 'A14BC',
+        'Access-Control-Allow-Origin': '*'
+        }
+     )
+
+  },[jwtToken])
+
+  
+  useEffect(()=>{
+    axios.get(cartItemApi, {headers: headerObject})
+          .then((res)=>{
+            setCartLength(res.data.data.totalItems);
+          });
+    
+
+  }, [])
+
+
+  //states for mini cart open and close
+  const [openModal, setOpenModal] = useState(false);
+
+  const openTheMiniCart = ()=>{
+    setOpenModal(true);
+  }
 
   return (
     <div>
@@ -59,7 +103,9 @@ const Header = () => {
                     {menu_items.map((res, index)=>{
 
                       return(
-                        <li key={index}>{res}</li>
+
+                        <li key={index}  className='header-menu-options'> <NavLink activeClassName="active" style={{textDecoration: 'none'}}  to={"/"+res.toLowerCase()}>{res}</NavLink></li>
+
                       )
 
                     })}
@@ -69,8 +115,8 @@ const Header = () => {
 
 
           <div>
-              <IconButton  aria-label="cart">
-                <StyledBadge badgeContent={4} color="secondary">
+              <IconButton  aria-label="cart" onClick={()=>openTheMiniCart()}>
+                <StyledBadge badgeContent={cartLength && cartLength} color="secondary">
                   <ShoppingCartOutlinedIcon fontSize="medium" color="action" />
                 </StyledBadge>
               </IconButton>
@@ -104,7 +150,8 @@ const Header = () => {
                               autoFocus='true' 
                               sx={{
                                     '&.Mui-selected': {
-                                      color: 'orange'
+                                      color: 'orange',
+                                      
                                     }
                                   }}
                               >
@@ -121,12 +168,26 @@ const Header = () => {
             </Dialog>
 
 
+            <MiniCart 
+                openModal={openModal}
+                setOpenModal = {setOpenModal}
+             />
+
+
         </div>
 
 
 
 
         <style jsx>{`
+
+          ul li a{
+              color: #3A3953;
+            }
+
+            .header-menu-options{
+              cursor: pointer;
+            }
 
 
               .ul-div{
