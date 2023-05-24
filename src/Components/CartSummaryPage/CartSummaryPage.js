@@ -16,7 +16,7 @@ const CartSummaryPage = () => {
   const [currentPage, setCurrentPage] = useState(0);
 
 const jwtToken ='Bearer '+theDefaultJwt;
-const cartItemApi = "http://ecom.apprikart.com/cc/api/cart/customer/6/2?limit=10&page=0";
+const cartItemApi = "http://ecom.apprikart.com/cc/api/cart/customer/2/2?limit=10&page=0";
 
 const headerObject =   useMemo( ()=>{
       return( {
@@ -63,6 +63,10 @@ const uniqueArr = data && data.filter((obj, index) => {
             return JSON.stringify(elem) === JSON.stringify(obj);
     });
 });
+
+
+
+
 
     
   return (

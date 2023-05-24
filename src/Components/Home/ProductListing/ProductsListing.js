@@ -104,7 +104,6 @@ const ProductsListing = () => {
 
     }
 
-    console.log("products: ", products)
 
 
     const urlValidation = async (url) => {
@@ -123,7 +122,6 @@ const ProductsListing = () => {
 
       //add-to-cart
     const modalAndDataHandler = (data) => {
-        console.log("add to cart item: ", data);
 
         dispatch(add(data));
 
@@ -134,7 +132,6 @@ const ProductsListing = () => {
 
     };
 
-    console.log("productCart: ", cartData)
 
 
     const handleClose = () => {
@@ -156,9 +153,7 @@ const ProductsListing = () => {
       });
 
 
-    console.log("theSelectedSizeType: ", theSelectedSizeType && theSelectedSizeType[0])
 
-    console.log("productOption: ", productOption)
 
     let theJsx = "";
 
@@ -190,7 +185,6 @@ const ProductsListing = () => {
     
      //find only the selected/chosen inventoryType/size and display the sku & price
      const skuandpricefromtheSelectedSizeType = cartData?.productinventories.filter(inv => inv.id === parseInt(productOption && productOption));
-    console.log("skuandpricefromtheSelectedSizeType: ", skuandpricefromtheSelectedSizeType)
 
      const [quantity, setQuantity] = useState(1);
 
@@ -217,6 +211,7 @@ const ProductsListing = () => {
 
      const navigate = useNavigate();
 
+
    const takeToProductPage = (product)=>{
 
     const formattedUrlParam = encodeURIComponent(product.name.replace(/\s+/g, '-'));
@@ -225,7 +220,7 @@ const ProductsListing = () => {
                 { state: { productData: product } })
    }
 
-     
+    
     
 
   return (
@@ -328,7 +323,7 @@ const ProductsListing = () => {
 
                             <div className='add-to-cart-btn-cart-div'>
                                 <button className='add-to-cart-button' onClick={()=>handleAddToCartData()}>Add to Cart</button>
-                                <a className="view-more" href="https://www.consciouscreatures.earth/home" >View More Details</a>
+                                <p className="view-more"  onClick={()=>takeToProductPage(cartData)}>View More Details</p>
                             </div>
                              
                         </div>
@@ -370,6 +365,8 @@ const ProductsListing = () => {
             .view-more{
                 font-size: 12px;
                 color: black;
+                text-decoration: underline;
+                cursor: pointer;
             }
 
             .quantity{

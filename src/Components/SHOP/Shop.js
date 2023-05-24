@@ -288,7 +288,8 @@ const Shop = () => {
 
                             <div className='add-to-cart-btn-cart-div-shop'>
                                 <button className='add-to-cart-button-shop' onClick={()=>handleAddToCartData()}>Add to Cart</button>
-                                <a className="view-more-shop" href="https://www.consciouscreatures.earth/home" >View More Details</a>
+                                <p className="view-more-shop"  onClick={()=>takeToProductPage(cartData)}>View More Details</p>
+
                             </div>
                              
                         </div>
@@ -312,9 +313,11 @@ const Shop = () => {
 
     <style jsx>{`
 
-    .view-more-shop{
+    .view-more-shop{            
                 font-size: 12px;
                 color: black;
+                text-decoration: underline;
+                cursor: pointer;
             }
 
     .add-to-cart-button-shop{

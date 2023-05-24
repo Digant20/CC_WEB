@@ -11,6 +11,7 @@ import store from './Components/store/store';
 import Productpage from './Components/ProductPage/Productpage';
 import { useParams } from 'react-router-dom';
 import CartSummaryPage from './Components/CartSummaryPage/CartSummaryPage';
+import Login from './Components/Login/Login';
 
 
 function App() {
@@ -26,6 +27,8 @@ function App() {
                 <Route exact path="/contact" Component={Contact} />
                 <Route exact path="/product-page/:decodedProduct" Component={Productpage} />
                 <Route exact path="/about" Component={About} />
+                <Route exact path="/login" Component={Login} />
+
                 <Route exact path="/cart" Component={CartSummaryPage} />
                 <Route exact path='/shop' Component={Shop} />
                 <Route exact path="/home" Component={Home} />
