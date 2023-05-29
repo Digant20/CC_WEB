@@ -1,92 +1,100 @@
-import React, { useState } from 'react';
+import React from 'react';
 import cc_logo from "../../Assets/images/Conscious_creatures_logo.png";
 import { Dialog, DialogContent } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import Signup from '../Signup/Signup';
 
 
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-    '& .MuiDialogContent-root': {
-      padding: theme.spacing(1),
-      height: '74vh',
-      width: 370
+        '& .MuiDialogContent-root': {
+        padding: theme.spacing(1),
+        height: '95vh',
+        width: 370,
+        
     }
   }));
 
 
 
-const Login = ({openLoginModal, setOpenLoginModal}) => {
+const Signup= ({openSignupModal, setOpenSignupModal}) => {
 
- // for signup pop-up
- const [openSignupModal, setOpenSignupModal] = useState(false);
-
-
- //end of signup pop-up
-
+  
 
     const handleClose = () => {
 
-        setOpenLoginModal(false);
+        setOpenSignupModal(false);
 
       };
-
-
 
 
   return (
     <div>
         <BootstrapDialog
             onClose={handleClose}
-            open={openLoginModal}
+            open={openSignupModal}
             
         >
                  
                 <DialogContent style={{backgroundColor: "#009BB9"}}>     
-                <button className="close-btn-login" onClick={()=>handleClose()}>X</button>           
-                <div className='parent-div-login'>
+                <button className="close-btn-login-signup" onClick={()=>handleClose()}>X</button>           
+                <div className='parent-div-login-signup'>
 
                 <div>
-                    <img className='cc-logo-login' src={cc_logo} alt="cc_logo" />
+                    <img className='cc-logo-login-signup' src={cc_logo} alt="cc_logo" />
                 </div>
 
-                    <div className='input-text-div'>
+	                <div>
+                        <input type='text' className='password-login-signup' name="fname" placeholder='First Name'/>
+                    </div>
+
+                    <div>
+                        <input type='text' className='password-login-signup' name="lname" placeholder='Last Name'/>
+                    </div>
+
+                    <div>
+                        <input type='text' className='password-login-signup' name="email" placeholder='email Address'/>
+                    </div>
+
+                    <div className='input-text-div-signup'>
                         <div >
-                            <select className='country-input'>
+                            <select className='country-input-signup'>
                                 <option><img src="india_flag" alt="country_flag"/> +91</option>
                                 <option><img src="india_flag" alt="country_flag"/> +31</option>
                             </select>
                         </div>
 
                         <div >
-                            <input type='number' className='mobile-num-input' name="mobile" placeholder='Mobile number'/>
+                            	<input type='number' className='mobile-num-input-signup' name="mobile" placeholder='Mobile number'/>
                         </div>
                     </div>
 
                     <div>
-                        <input type='password' className='password-login' placeholder='Password'/>
-                        <a href="#" className='forgot-pass-login' >Forgot Password ?</a>
-
+                       	 <input type='password' className='password-login-signup' placeholder='Password'/>
                     </div>
 
-                        <button className='login-btn'>Login</button>
+	                <div>
+                    		<input type='password' className='password-login-signup' placeholder='Confirm Password'/>
+                	</div>
+
+                        <button className='login-btn-signup'>Sign Up</button>
                     
 
                     <div>
                         <a href="#"  style={{color: "white", fontSize: "12px", float: 'left'}}>Terms & Conditions, Privacy policy </a>
-                        <span onClick={()=>{setOpenSignupModal(true); setOpenLoginModal(false);}} style={{color: "white", fontSize: "13px",  float: "right", marginTop: "20px", textDecoration: "underline"}}>Don't have an account?</span>
                     </div>
 
-                    {/* <div className="svg-div">
+                    {/* 
+                    
+                    <div className="svg-div">
                         <svg className="wave" xmlns="http://www.w3.org/2000/svg" viewBox="40 0 79 500" preserveAspectRatio="none">
-                        <path className="path" d="M0 400
-                            c25 0 25 -25 50 -25
-                            c25 0 25 40 50 40
-                            c25 0 25 -15 50 -30
-                            v115
-                            h-225
-                            z" />
-                    </svg>         
+                            <path className="path" d="M0 400
+                                c25 0 25 -25 50 -25
+                                c25 0 25 40 50 40
+                                c25 0 25 -15 50 -30
+                                v115
+                                h-225
+                                z" />
+                        </svg>         
 
                         
                     </div> */}
@@ -97,17 +105,13 @@ const Login = ({openLoginModal, setOpenLoginModal}) => {
                 </DialogContent>
         
             </BootstrapDialog>
-                    
-                    <Signup 
-                        openSignupModal={openSignupModal}
-                        setOpenSignupModal = {setOpenSignupModal} 
-                    />
+        
 
 
             <style jsx>{
             `
 
-                .close-btn-login{
+                .close-btn-login-signup{
                     cursor: pointer;
                     border: 1px solid #FEC74F;
                     border-radius: 2px;
@@ -120,12 +124,12 @@ const Login = ({openLoginModal, setOpenLoginModal}) => {
                 }
 
 
-                .login-btn{
+                .login-btn-signup{
                     border-radius: 3px;
                     width: 100%;                   
                     border: 1px solid #FEC74F;
                     height: 35px;
-                    margin-top: 10px;
+                    margin-top: 30px;
                     border-radius: 2px;
                     outline: none;
                     background-color: #FEC74F;
@@ -133,7 +137,7 @@ const Login = ({openLoginModal, setOpenLoginModal}) => {
                 }
 
 
-                .terms-privacy-login-div{                    
+                .terms-privacy-login-div-signup{                    
                     z-index: 1;
                     position: relative;
                     margin-top: 2%;
@@ -141,7 +145,7 @@ const Login = ({openLoginModal, setOpenLoginModal}) => {
                 }
 
 
-                .forgot-pass-login{
+                .forgot-pass-login-signup{
                      float: right;
                      margin-top: 4px;
                      color: white;
@@ -150,7 +154,7 @@ const Login = ({openLoginModal, setOpenLoginModal}) => {
                 }
 
 
-                .password-login{
+                .password-login-signup{
                     width: 95%;
                     height: 35px;
                     border: 1px solid #FEC74F;
@@ -158,7 +162,7 @@ const Login = ({openLoginModal, setOpenLoginModal}) => {
                     padding-left: 10px;
                 }
 
-                .mobile-num-input{
+                .mobile-num-input-signup{
                     
                     height: 35px;
                     border: 1px solid #FEC74F;
@@ -166,14 +170,14 @@ const Login = ({openLoginModal, setOpenLoginModal}) => {
                     padding-left: 10px;
                 }
 
-                .country-input{
+                .country-input-signup{
                     width: 70px;
                     height: 39px;
                     border: 1px solid #FEC74F;
                     border-radius: 3px;
                 }
 
-                .input-text-div{  
+                .input-text-div-signup{  
                     display: flex;
                     flex-direction: row;
                     gap: 10px;
@@ -181,7 +185,7 @@ const Login = ({openLoginModal, setOpenLoginModal}) => {
                    
                 }
 
-                .parent-div-login{
+                .parent-div-login-signup{
                     display: flex;
                     flex-direction: column;
                     gap: 10px;                   
@@ -192,11 +196,12 @@ const Login = ({openLoginModal, setOpenLoginModal}) => {
                     transform: translate(-50%, -50%);
                 }
 
-                .cc-logo-login{
+                .cc-logo-login-signup{
                     width: 120px;
                     height: 120px;
                     
-                    transform: translate(65%, -40%);
+                    transform: translate(65%, -10%);
+                 
                  }
 
                  {/* .parent-div-login:hover{
@@ -208,7 +213,6 @@ const Login = ({openLoginModal, setOpenLoginModal}) => {
 
             
             
-            
             `  
             }</style>
 
@@ -216,4 +220,4 @@ const Login = ({openLoginModal, setOpenLoginModal}) => {
     )   
 }
 
-export default Login
+export default Signup

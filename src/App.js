@@ -1,17 +1,20 @@
 import './App.css';
-import Home from './Components/Home/Home';
-
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import Shop from './Components/SHOP/Shop';
-import About from './Components/ABOUT/About';
-import Contact from './Components/CONTACT/Contact';
 import { AuthProvider } from './Components/utils/auth';
 import {Provider} from "react-redux";
 import store from './Components/store/store';
-import Productpage from './Components/ProductPage/Productpage';
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import { useParams } from 'react-router-dom';
-import CartSummaryPage from './Components/CartSummaryPage/CartSummaryPage';
-import Login from './Components/Login/Login';
+import React from "react";
+const Home=React.lazy(()=> import('./Components/Home/Home'));
+
+const Shop=React.lazy(()=> import ('./Components/SHOP/Shop'));
+const About=React.lazy(()=> import('./Components/ABOUT/About'));
+const Contact=React.lazy(()=> import('./Components/CONTACT/Contact'));
+
+const Productpage = React.lazy(()=> import('./Components/ProductPage/Productpage'));
+const CartSummaryPage = React.lazy(()=> import('./Components/CartSummaryPage/CartSummaryPage'));
+const Login =React.lazy(()=> import('./Components/Login/Login'));
+const Signup=React.lazy(()=> import('./Components/Signup/Signup'));
 
 
 function App() {
@@ -27,7 +30,9 @@ function App() {
                 <Route exact path="/contact" Component={Contact} />
                 <Route exact path="/product-page/:decodedProduct" Component={Productpage} />
                 <Route exact path="/about" Component={About} />
-                <Route exact path="/login" Component={Login} />
+                 {/* <Route exact path="/login" Component={Login} /> */}
+                
+                <Route exact path="/signup" Component={Signup} /> 
 
                 <Route exact path="/cart" Component={CartSummaryPage} />
                 <Route exact path='/shop' Component={Shop} />

@@ -13,6 +13,7 @@ import {useDispatch, useSelector} from "react-redux";
 import { add } from '../../store/cartSlice';
 import MiniCart from '../../MiniCart/MiniCart';
 import {useNavigate} from "react-router-dom"
+import Login from '../../Login/Login';
 
 
 
@@ -40,6 +41,13 @@ const Item = styled(Paper)(({ theme }) => ({
  
 
 const ProductsListing = () => {
+
+    // for login pop-up
+        const [openLoginModal, setOpenLoginModal] = useState(false);
+
+
+    //end of login pop-up
+
 
     const dispatch = useDispatch();
 
@@ -123,12 +131,15 @@ const ProductsListing = () => {
       //add-to-cart
     const modalAndDataHandler = (data) => {
 
-        dispatch(add(data));
+        if(localStorage.getItem("loginData") !== null)
+          {
+                dispatch(add(data));
+                setCartItem(data);
+                setOpen(true);
 
-        setCartItem(data);
-        
-
-        setOpen(true);
+          }else{
+            setOpenLoginModal(true);
+          }
 
     };
 
@@ -339,6 +350,12 @@ const ProductsListing = () => {
                 setOpenModal = {setOpenModal}
              />
         </div>
+
+            <Login 
+                openLoginModal={openLoginModal}
+                setOpenLoginModal = {setOpenLoginModal}             
+            />
+        
                 
         
 

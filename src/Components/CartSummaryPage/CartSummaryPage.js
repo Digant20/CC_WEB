@@ -78,22 +78,16 @@ const noteinputfieldToggle = () =>{
 }
 
 
-
-
-
-    
   return (
     <div style={{backgroundColor: "#FFFAF5"}}>
     <Header />
     <div className='main-content-div-ppage-cart-summary'>
       <div className='path-header-div-cart-summary'>
-        <div style={{ flexBasis:"48%",padding: "10px 10px 10px 0px", fontSize: "20px", color:"#3A3953", marginTop: "25%", borderBottom: "1px solid black"}}>
-            <span className='mycart-heading'>My cart</span>
+        <div style={{ flexBasis:"45%", padding: "10px 10px 10px 0px", fontSize: "20px", color:"#3A3953", marginTop: "25%", borderBottom: "1px solid black"}}>
+            <span className='order-summary-heading'>My cart</span>
         </div>
-        <div style={{ flexBasis:"40%", borderBottom: "1px solid black", fontSize: "20px", color:"#3A3953", marginTop: "25%",marginRight:"5%"}}>
+        <div style={{ flexBasis:"38%",  padding: "10px 10px 10px 0px", borderBottom: "1px solid black", fontSize: "20px", color:"#3A3953", marginTop: "25%"}}>
             <div className='order-summary-heading'>Order summary</div>
-           
-
         </div>
        
       </div>
@@ -101,10 +95,7 @@ const noteinputfieldToggle = () =>{
           <div className='parent-cart-div-ppage-cart-summary' style={{flexBasis:"63%"}} >
           {
             uniqueArr && uniqueArr.map((res, index)=>{
-
-              const isLastElement = index === uniqueArr.length - 1;
-              const containerClassName = isLastElement ? 'minicart-inner-container-div-cart-summary' : 'minicart-inner-container-div-cart-summary with-border-bottom-cart-summary';
-
+                console.log("cartsummary: ", res)
                 return(
                   <div >
                       <div className="minicart-inner-container-div-cart-summary with-border-bottom-cart-summary" key={index}>
@@ -113,44 +104,41 @@ const noteinputfieldToggle = () =>{
                         </div>
 
                         <div className='minicart-text-btn-cart-summary'>
-                          <div style={{display:"flex",flexDirection:"row",gap:"100px"}}>
-                          <div >
-                            <div className='item-name-minicart-cart-summary'>
-                                {res?.product?.name}
-                            </div>
-                            <div style={{paddingTop:"20px"}}>
-                              250
-                              </div>
-
-                              <div  style={{paddingTop:"5px"}}>
-                              size:medium
-                              </div>
-
-                            
-                            </div  >
-                             <div>
-                              <div  className='btn-flex-container'>
-                            <div className='quantity-minicart-div-cart-summary' >
-                                <button className="inc-decr-btns-minicart-cart-summary">-</button>
-                                  <input type="text" value={quantity == "" || quantity == " " || quantity == null || !quantity ? res.quantity : parseInt(quantity)} onChange={(e)=>{setQuantity(e.target.value)}} className='input-minicart'/>
-                                <button className="inc-decr-btns-minicart-cart-summary">+</button>
-                            </div>
-                            <div>
-                              <div>500</div>
-                              </div>
+                          <div style={{display:"flex",flexDirection:"row",gap:"50px"}}>
+                          
                               <div>
-                              <div><CloseIcon className='close-icon' /></div>
-                                </div>
+                                  <div className='item-name-minicart-cart-summary'>
+                                      {res?.product?.name}
+                                  </div>
+                                  <div style={{paddingTop:"10px"}}>
+                                    250
+                                  </div>
+
+                                  <div  style={{paddingTop:"5px", color: "grey"}}>
+                                    size: medium
+                                  </div>
                               </div>
+                           
+                              <div  className='btn-flex-container'>
+                                  <div className='quantity-minicart-div-cart-summary' >
+                                      <button className="inc-decr-btns-minicart-cart-summary">-</button>
+                                        <input type="text" value={quantity == "" || quantity == " " || quantity == null || !quantity ? res.quantity : parseInt(quantity)} onChange={(e)=>{setQuantity(e.target.value)}} className='input-minicart'/>
+                                      <button className="inc-decr-btns-minicart-cart-summary">+</button>
+                                  </div>
+
+                                  <div>
+                                    <div>500</div>
+                                  </div>
+                                  
+                                  <div>
+                                    <div><CloseIcon className='close-icon' /></div>
+                                  </div>
                               </div>
+                              
 
                         </div>
                                    
-                        <div>
-                           
-                                <CancelOutlinedIcon className='remove-icon-minicart'  style={{color: "#3A3953"}}/>
-                            
-                        </div>
+                        
                         </div>
                        
                       </div>
@@ -161,8 +149,8 @@ const noteinputfieldToggle = () =>{
             }
        
              <div className='promocode-div-container'>
-              <div style={{textAlign:"left",cursor:"pointer"}} className='promocode-name' onClick={()=>promoinputfieldToggle()}>< LocalOfferOutlinedIcon className='promo-icon'/>Enter a promo code</div>
-              <div style={{display:"flex",flexDirection:"row",paddingTop:"20px"}}>
+              <div style={{textAlign:"left",cursor:"pointer", display: 'flex', alignItems: 'center'}} className='promocode-name' onClick={()=>promoinputfieldToggle()}><LocalOfferOutlinedIcon className='promo-icon'/>Enter a promo code</div>
+              <div style={{display:"flex",flexDirection:"row",  width: "375px", marginLeft: "35px",}}>
                 <input type="text" placeholder="Enter a Promo Code" className=
                 { 
                   promoInput?
@@ -177,8 +165,8 @@ const noteinputfieldToggle = () =>{
               </div>
              </div>
              <div className='note-div-container'>
-              <div style={{textAlign:"left",cursor:"pointer"}} onClick={()=>noteinputfieldToggle()} ><DescriptionOutlinedIcon className="note-icon" />Add a note</div>
-              <div style={{paddingTop:"20px",display:"flex",flexDirection:"row"}}>
+              <div style={{textAlign:"left",cursor:"pointer", display: 'flex', alignItems: 'center'}} onClick={()=>noteinputfieldToggle()} ><DescriptionOutlinedIcon className="note-icon" />Add a note</div>
+              <div style={{display:"flex",flexDirection:"row",  width: "375px", marginLeft: "35px", height: "92px"}}>
                 <input type="text" placeholder="Instructions?Special requests?Add them here" className=
                 {
                   noteInput?
@@ -193,34 +181,39 @@ const noteinputfieldToggle = () =>{
 
           </div>
           <div className='order-summary-div'>
-            <div className='subtotal-div'>
-        <div>Subtotal</div>
-        <div>250</div>
-        </div>
-        <div className='shipping-div'>
-        <div>Shipping</div>
-        <div>300</div>
-        </div>
-        <div >
-        <div className='state-div'>karnataka,India</div>
-        
-        </div>
-        <div className='taxes-div'>
-        <div>Taxes</div>
-        <div>45</div>
-        </div>
-        <div className='total-div'>
-        <div>Total</div>
-        <div>325</div>
-        </div>
-        <div >
-          <button className='checkout-btn'>Checkout</button>
-        </div>
-        <div>
-          <div className='Secure-Checkout-div'><HttpsIcon className='secure-icon' />Secure Checkout</div>
-        </div>
+              <div className='subtotal-div'>
+                  <div>Subtotal</div>
+                  <div>250</div>
+              </div>
+
+              <div className='shipping-div'>
+                  <div>Shipping</div>
+                  <div>300</div>
+              </div>
+
+              <div>
+                  <div className='state-div'>karnataka,India</div>
+              </div>
+
+              <div className='taxes-div'>
+                  <div>Taxes</div>
+                  <div>45</div>
+              </div>
+
+              <div className='total-div'>
+                  <div>Total</div>
+                  <div>325</div>
+              </div>
+              
+              <div >
+                  <button className='checkout-btn'>Checkout</button>
+              </div>
+
+              <div>
+                  <div className='Secure-Checkout-div'><HttpsIcon className='secure-icon' />Secure Checkout</div>
+              </div>
           </div>
-          </div>
+        </div>
         
     </div>
 
@@ -241,6 +234,7 @@ const noteinputfieldToggle = () =>{
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
+                text-align: left;
            
             }
 
@@ -248,23 +242,22 @@ const noteinputfieldToggle = () =>{
              .minicart-inner-container-div-cart-summary{
                 display: flex;
                 flex-direction: row;
-                margin-top: 20px;
-                gap: 50px;
-                padding-bottom: 25px;
-                width:50%;
+                margin-top: 15px;
+                gap: 30px;
+                padding-bottom: 20px;
+                width: 75%;
               
-            
             }
 
        .minicart-inner-container-div-cart-summary.with-border-bottom-cart-summary{
             display: flex;
             flex-direction: row;
            
-            margin-top: 20px;
-            gap: 50px;
-        
+            margin-top: 15px;
+            gap: 30px;
+            width: 75%;
             border-bottom: 1px solid #3A3953;
-            width:90%;
+            
         }
 
       .minicart-image-cart-summary{
@@ -292,6 +285,7 @@ const noteinputfieldToggle = () =>{
       .minicart-text-btn-cart-summary{
             display: flex;
             flex-direction: column;
+            text-align: left;
         }
            
 
@@ -312,29 +306,26 @@ const noteinputfieldToggle = () =>{
 
       .quantity-minicart-div-cart-summary{
             display: flex;
-            flex-direction: row;
-            // margin-top: 10px;
+            height: 24px;
             border: 1px solid #3A3953;
         }
-        .order-summary-div{
-          padding-right:100px;
-          
-        }
+
+       
         .subtotal-div{
           display:flex;
           flex-direction:row;
-          gap:260px;
+          justify-content: space-between;
         }
         .shipping-div{
           display:flex;
           flex-direction:row;
-          gap:260px;
+          justify-content: space-between;
           margin-top:10px;
         }
         .taxes-div{
           display:flex;
           flex-direction:row;
-          gap:290px;
+          justify-content: space-between;
           margin-top:10px;
           padding-bottom:20px;
         }
@@ -348,7 +339,7 @@ const noteinputfieldToggle = () =>{
         .checkout-btn{
           background-color:#3A3953;
           color:white;
-          border-radius:6px;
+          border-radius: 2px;
           width:100%;
           height:7vh;
           border:none;
@@ -360,6 +351,9 @@ const noteinputfieldToggle = () =>{
         }
         .Secure-Checkout-div{
           margin-top:20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
         .state-div{
           text-align:left;
@@ -369,88 +363,91 @@ const noteinputfieldToggle = () =>{
         .btn-flex-container{
           display:flex;
           flex-direction:row;
-        gap:20px;
+          gap: 15px;
    
       
      
         }
         .promocode-input-filend-div{
-          height:7vh;
-          width:40%;
-          padding-left:20px;
+          height:34px;
+          width: 300px;
+          padding-left: 10px;
+          outline:none
           color:grey;
           background-color:#FFFAF5;
           display:block;
         }
         .promocode-input-filend-div-two{
-        display:none;
-  
-        }
-        .promocode-input-filend-divs{
-          height:13vh;
-          width:55%;
-          padding-left:20px;
-          color:grey;
-          background-color:#FFFAF5;
-          display:block;
-        }
-        .promocode-input-filend-divs-two{
-          height:13vh;
-          width:55%;
-          padding-left:20px;
-          color:grey;
-          background-color:#FFFAF5;
           display:none;
+          outline:none
         }
+
+
+
+        {/* note */}
+
+        .promocode-input-filend-divs{
+            height: 86px;
+            width: 100%;
+            padding-left: 12px;
+            color:grey;
+            background-color:#FFFAF5;
+            display:block;
+        }
+
+        .promocode-input-filend-divs-two{
+            display:none;
+        }
+
+
         .apply-btn{
-         background-color:
-          color:grey;
-          width:15%;
-          background-color:#FFFAF5;
-          display:block;
+            background-color:
+            color:grey;
+            height:40px;
+            width: 100px;
+            background-color:#FFFAF5;
+            display:block;
         }
         .apply-btn-two{
-          background-color:
-           color:grey;
-           width:15%;
-           background-color:#FFFAF5;
+          
            display:none;
          }
+
+         
         .promocode-div-container{
-          margin-top:20px;
+            margin-top:20px;
         }
-    .note-div-container{
-    margin-top:20px;
-     }
+
+      .note-div-container{
+          margin-top:20px;
+          }
+
      .instructions-field{
       width:100%;
       height:15vh;
       margin-right:50%;
      }
      .promo-icon{
-    
-      transform: rotate(80deg);
-      color:grey;
-   
-      
-     
+        transform: rotate(80deg);
+        color:grey;
+        margin: 5px;
      }
      .note-icon{
       color:grey;
-      margin-top:10px;
+      margin: 5px;
      }
      .secure-icon{
       color:#3A3953;
-     
+      margin: 2px;
      }
      .close-icon{
       color:grey;
      }
      .mycart-heading{
-      margin-right:80%;
+      text-align: left;
      }
      .order-summary-heading{
-      margin-right:60%;
+      text-align: left;
      }
     
                       

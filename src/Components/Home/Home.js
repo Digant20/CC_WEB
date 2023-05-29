@@ -1,15 +1,4 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import Header from './Header/Header'
-import OurRange from './SectionTitleHeaders/OurRange'
-import RangeCards from './RangeCards/RangeCards'
-import WelcomeBanner from './WelcomeBanner/WelcomeBanner'
-import DeliciouslyClimate from './SectionTitleHeaders/DeliciouslyClimate'
-import FoodExplainer from './FoodExplainer/FoodExplainer'
-import ProductsListing from './ProductListing/ProductsListing'
-import AboutUs from './About/AboutUs'
-import SocialMedia from './SocialMedia/SocialMedia'
-import HappyCustomers from './HappyCustomers/HappyCustomers'
-import Footer from './Footer/Footer'
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import CloseIcon from '@mui/icons-material/Close';
@@ -19,16 +8,29 @@ import { styled } from '@mui/material/styles';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import NavigateNextOutlinedIcon from '@mui/icons-material/NavigateNextOutlined';
 import axios from 'axios'
+const OurRange = React.lazy(()=> import('./SectionTitleHeaders/OurRange'))
+const RangeCards= React.lazy(()=> import('./RangeCards/RangeCards'))
+const WelcomeBanner =React.lazy(()=> import('./WelcomeBanner/WelcomeBanner'))
+const DeliciouslyClimate= React.lazy(()=> import( './SectionTitleHeaders/DeliciouslyClimate'))
+const FoodExplainer= React.lazy(()=> import( './FoodExplainer/FoodExplainer'))
+const ProductsListing =React.lazy(()=> import( './ProductListing/ProductsListing'))
+const  AboutUs =React.lazy(()=> import( './About/AboutUs'))
+const SocialMedia = React.lazy(()=> import( './SocialMedia/SocialMedia'))
+const HappyCustomers =React.lazy(()=> import( './HappyCustomers/HappyCustomers'))
+const  Footer =React.lazy(()=> import( './Footer/Footer'))
+
+const Header=React.lazy(()=> import('./Header/Header'));
+
 
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  '& .MuiDialogContent-root': {
-    padding: theme.spacing(2),
-    
-  },
-  '& .MuiDialogActions-root': {
-    padding: theme.spacing(1),
-  },
+    '& .MuiDialogContent-root': {
+      padding: theme.spacing(2),
+      
+    },
+    '& .MuiDialogActions-root': {
+      padding: theme.spacing(1),
+    },
 }));
 
 
@@ -65,23 +67,14 @@ const Home = () => {
 
   const [open, setOpen] = React.useState(false);
 
-  // localStorage.setItem("email_banner_counter", null);
-
-  // if(localStorage.getItem("email_banner_counter") === null){
-  //     // window.alert("triggered only once")
-  //     setOpen(true);
-  //     // localStorage.setItem("email_banner_counter", guestEmail && guestEmail);
-  // }
-
-
   useEffect(() => {
 
-    const hasVisited = localStorage.getItem('hasVisited');
+        const hasVisited = localStorage.getItem('hasVisited');
 
-    if ( hasVisited === false || localStorage.getItem("email_banner_counter") === null) {
-      
-      setOpen(true);
-    }
+        if ( hasVisited === false || localStorage.getItem("email_banner_counter") === null) {
+          
+          setOpen(true);
+        }
 
   }, []);
 
@@ -95,7 +88,7 @@ const Home = () => {
 
     const handleClose = () => {
 
-      if (guestEmail === '') {
+      if (guestEmail === '' || guestEmail === ' ') {
         setEmailError('Please enter your email to proceed!');
       } else {
         

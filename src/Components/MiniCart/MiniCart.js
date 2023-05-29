@@ -101,13 +101,11 @@ console.log("uniqueArr: ", uniqueArr && uniqueArr)
 let subtotal=0;
 
 uniqueArr?.map((cartItem) => {
-  const cartItemSKU = cartItem.sku;
-  const productInventory = cartItem.product.productinventories.find((inventory) => inventory.sku === cartItemSKU);
+  const cartItemSKU = cartItem?.sku;
+  const productInventory = cartItem?.product?.productinventories?.find((inventory) => inventory.sku === cartItemSKU);
   subtotal = productInventory ? productInventory.price * cartItem.quantity : 0
 
-  console.log("CartItem SKU:", cartItemSKU);
-  console.log("Product Inventory:", productInventory);
-  console.log("Subtotal:", subtotal);
+ 
 });
 
 
@@ -150,7 +148,7 @@ uniqueArr?.map((cartItem) => {
         <DialogContent className='minicart-container-div'>
 
           {
-            uniqueArr && uniqueArr.map((res, index)=>{
+            uniqueArr && uniqueArr?.map((res, index)=>{
 
               const isLastElement = index === uniqueArr.length - 1;
               const containerClassName = isLastElement ? 'minicart-inner-container-div' : 'minicart-inner-container-div with-border-bottom';
@@ -167,7 +165,7 @@ uniqueArr?.map((cartItem) => {
                             </div>
 
                             <div className='price-text-minicart'>
-                                Rs.{res?.product?.productinventories.find(result => result.sku === res.sku)?.price}
+                                Rs.{res?.product?.productinventories?.find(result => result.sku === res.sku)?.price}
                             </div>
 
                             <div className='quantity-minicart-div'>
