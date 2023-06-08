@@ -68,10 +68,10 @@ export default function MiniCart(props) {
             const response = await axios.get(cartItemApi, {headers: headerObject});
             const responseData = response.data;
 
-            //setData(responseData?.data?.cartitem);
+            setData(responseData?.data?.cartitem);
 
             
-            setData(prevData => prevData.concat(responseData?.data?.cartitem));
+            //setData(prevData => prevData.concat(responseData?.data?.cartitem));
             //setData((prevData) => [...prevData, responseData?.data?.cartitem]);
             setTotalPages(responseData?.data?.totalPages-1);
 
