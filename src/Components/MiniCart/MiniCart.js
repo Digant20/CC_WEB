@@ -47,7 +47,7 @@ export default function MiniCart(props) {
     const [currentPage, setCurrentPage] = useState(0);
 
   const jwtToken ='Bearer '+theDefaultJwt;
-  const cartItemApi = "http://ecom.apprikart.com/cc/api/cart/customer/6/2?limit=10&page=0";
+  const cartItemApi = "http://ecom.apprikart.com/cc/api/cart/customer/60/2?limit=10&page=0";
 
   const headerObject =   useMemo( ()=>{
         return( {
@@ -67,14 +67,20 @@ export default function MiniCart(props) {
         try {
             const response = await axios.get(cartItemApi, {headers: headerObject});
             const responseData = response.data;
-    
+
+            //setData(responseData?.data?.cartitem);
+
+            
             setData(prevData => prevData.concat(responseData?.data?.cartitem));
+            //setData((prevData) => [...prevData, responseData?.data?.cartitem]);
             setTotalPages(responseData?.data?.totalPages-1);
 
         } catch (error) {
             console.error(error);
         }
     }
+
+  
 
     if (currentPage <= totalPages) {
         getData();
@@ -89,7 +95,7 @@ export default function MiniCart(props) {
   const [quantity, setQuantity] = useState();
 
 
-const uniqueArr = data && data.filter((obj, index) => {
+const uniqueArr = data && data?.filter((obj, index) => {
   return index === data.findIndex((elem) => {
     return JSON.stringify(elem) === JSON.stringify(obj);
   });
@@ -148,9 +154,9 @@ uniqueArr?.map((cartItem) => {
         <DialogContent className='minicart-container-div'>
 
           {
-            uniqueArr && uniqueArr?.map((res, index)=>{
+            data && data?.map((res, index)=>{
 
-              const isLastElement = index === uniqueArr.length - 1;
+              const isLastElement = index === data.length - 1;
               const containerClassName = isLastElement ? 'minicart-inner-container-div' : 'minicart-inner-container-div with-border-bottom';
 
                 return(

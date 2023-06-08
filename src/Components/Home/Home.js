@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { Suspense, useEffect, useMemo, useState } from 'react'
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import CloseIcon from '@mui/icons-material/Close';
@@ -7,7 +7,10 @@ import { theDefaultJwt } from '../utils/theJwt';
 import { styled } from '@mui/material/styles';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import NavigateNextOutlinedIcon from '@mui/icons-material/NavigateNextOutlined';
-import axios from 'axios'
+import axios from 'axios';
+import { List } from 'react-content-loader'
+
+
 const OurRange = React.lazy(()=> import('./SectionTitleHeaders/OurRange'))
 const RangeCards= React.lazy(()=> import('./RangeCards/RangeCards'))
 const WelcomeBanner =React.lazy(()=> import('./WelcomeBanner/WelcomeBanner'))
@@ -21,7 +24,7 @@ const  Footer =React.lazy(()=> import( './Footer/Footer'))
 
 const Header=React.lazy(()=> import('./Header/Header'));
 
-
+const MyListLoader = () => <List />
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -152,8 +155,10 @@ const Home = () => {
 
 
   return (
+   
 
     <div  className='main-div'>
+     <Suspense fallback={<MyListLoader />}>
         <Header />
         <WelcomeBanner />
         <OurRange />
@@ -220,6 +225,7 @@ const Home = () => {
         </div>
 
         <Footer />
+        </Suspense>
 
     <style jsx>{
       
@@ -297,8 +303,6 @@ const Home = () => {
   
       }
 
-
-      
           
         .icon {
             padding: 10px;
@@ -319,6 +323,7 @@ const Home = () => {
     }</style>
         
     </div>
+
   )
 }
 

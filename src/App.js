@@ -4,7 +4,10 @@ import {Provider} from "react-redux";
 import store from './Components/store/store';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import { useParams } from 'react-router-dom';
-import React from "react";
+import React, { Suspense } from "react";
+
+import { List } from 'react-content-loader';
+
 const Home=React.lazy(()=> import('./Components/Home/Home'));
 
 const Shop=React.lazy(()=> import ('./Components/SHOP/Shop'));
@@ -16,6 +19,7 @@ const CartSummaryPage = React.lazy(()=> import('./Components/CartSummaryPage/Car
 const Login =React.lazy(()=> import('./Components/Login/Login'));
 const Signup=React.lazy(()=> import('./Components/Signup/Signup'));
 
+const MyListLoader = () => <List />
 
 function App() {
 
@@ -24,6 +28,7 @@ function App() {
   return (
     <div className="App">
     {/* <AuthProvider> */}
+    <Suspense fallback={<MyListLoader />}>
       <Provider store={store}> 
         <Router>
               <Routes>
@@ -41,6 +46,7 @@ function App() {
         </Router>
       </Provider>
     {/* </AuthProvider> */}
+    </Suspense>
     </div>
   );
 }

@@ -282,7 +282,7 @@ const Shop = () => {
 
                                 <div style={{display: 'flex', flexDirection: 'column', gap: '5px'}}>
                                     <label>Quantity</label>
-                                    <input type="number" className='quantity-shop' value={quantity} onChange={(e)=> setQuantity(e.trget.value)}  min="1" max="10"/>
+                                    <input type="number" className='quantity-shop' value={quantity} onChange={(e)=> setQuantity(e.target.value)}  min="1" max="10"/>
                                 </div>
                             </div>
 

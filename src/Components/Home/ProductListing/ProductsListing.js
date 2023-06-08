@@ -128,18 +128,22 @@ const ProductsListing = () => {
 
       const [cartItem, setCartItem] = useState([]);
 
-      //add-to-cart
+      //add-to-cart and
     const modalAndDataHandler = (data) => {
 
-        if(localStorage.getItem("loginData") !== null)
-          {
-                dispatch(add(data));
-                setCartItem(data);
-                setOpen(true);
+        dispatch(add(data));
+        setCartItem(data);
+        setOpen(true);
+        //uncomment to implement login modal pop-up
+        // if(localStorage.getItem("loginData") !== null)
+        //   {
+        //         dispatch(add(data));
+        //         setCartItem(data);
+        //         setOpen(true);
 
-          }else{
-            setOpenLoginModal(true);
-          }
+        //   }else{
+        //     setOpenLoginModal(true);
+        //   }
 
     };
 
@@ -149,8 +153,13 @@ const ProductsListing = () => {
         setOpen(false);
     };
 
-    const [productOption, setProductOption] = useState();
+    const [productOption, setProductOption] = useState(null);
 
+  useEffect(() => {
+    if (cartData?.productinventories?.length) {
+      setProductOption(cartData.productinventories[0].id);
+    }
+  }, [cartData]);
     const handleProductOption = (res)=>{
         setProductOption(res.target.value);
 
@@ -166,28 +175,17 @@ const ProductsListing = () => {
 
 
 
-    let theJsx = "";
-
-    if(cartData && cartData?.productinventories && Array.isArray(cartData?.productinventories)){
-
-       theJsx = <select className='size-dropdown'
-                    onChange={(res)=>{handleProductOption(res)}}
-                 >
-                        
-                    {
-                        cartItem?.productinventories?.map((res, index)=>{
-                            return(
-                                
-                                    <option  value={res?.id}>{res?.inventoryType}</option>
-                                
-                            )})      
-                            
-                    }
-                </select>
-
-    }else{
-       theJsx =  <div>No Data</div>
-    }
+      const theJsx = cartData?.productinventories && Array.isArray(cartData.productinventories) ? (
+        <select className='size-dropdown' onChange={(res) => handleProductOption(res)}>
+          {
+            cartData.productinventories.map((res, index) => (
+              <option value={res?.id}>{res?.inventoryType}</option>
+            ))
+          }
+        </select>
+      ) : (
+        <div>No Data</div>
+      );
 
 
 
@@ -202,10 +200,10 @@ const ProductsListing = () => {
      const handleAddToCartData=()=>{
 
         const body={
-                    "quantity": quantity,
+                    "quantity": quantity && quantity,
                     "sku": skuandpricefromtheSelectedSizeType && skuandpricefromtheSelectedSizeType[0]?.sku,
                     "unitname": skuandpricefromtheSelectedSizeType && skuandpricefromtheSelectedSizeType[0]?.unitName,
-                    "customerId": 2,
+                    "customerId": 60,
                     "productId": skuandpricefromtheSelectedSizeType[0].productId,
                     "regionId":2
                     }
@@ -216,7 +214,7 @@ const ProductsListing = () => {
             .then( (res)=>{
                 handleClose();
                 setOpenModal(true);
-
+                console.log("body: acios ",res.data)
             }).catch((error)=>{window.alert(error.message)})
      }
 
@@ -250,9 +248,7 @@ const ProductsListing = () => {
                             <Grid item xs={6}>
                                 <Item onMouseOver={()=>{setOver(true); setProductIndex(index)}} 
                                         onMouseOut={()=>{setOver(false); setProductIndex(index)}}  key={index}>
-                                    <div className='product-columns' 
-                                        
-                                    >
+                                    <div className='product-columns'>
 
                                         <div>
                                             <img className='product-image' onClick={()=>takeToProductPage(res)} src={urlValidation(res.image) ? res.image : blank_image} alt={res.image}/>
@@ -328,7 +324,7 @@ const ProductsListing = () => {
 
                                 <div style={{display: 'flex', flexDirection: 'column', gap: '5px'}}>
                                     <label>Quantity</label>
-                                    <input type="number" className='quantity' value={quantity} onChange={(e)=> setQuantity(e.trget.value)}  min="1" max="10"/>
+                                    <input type="number" className='quantity' value={quantity} onChange={(e)=> setQuantity(e.target.value)}  min="1" max="10"/>
                                 </div>
                             </div>
 
